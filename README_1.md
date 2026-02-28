@@ -7,7 +7,7 @@ Simula el flujo de información operativa de un área de tesorería y automatiza
 
 ## Problema que resuelve
 
-En tesorería, los analistas consolidan diariamente movimientos de múltiples productos (depósitos, overnights, repos, etc.) para calcular la posición de liquidez. Este proceso manual puede tomar entre 30 y 60 minutos por reporte. Este proyecto lo automatiza a menos de 1 segundo.
+En tesorería, los analistas consolidan diariamente movimientos de múltiples productos (depósitos, overnights, repos, etc.) para calcular la posición de liquidez. Este proceso manual puede tomar varios minutos por reporte. Este proyecto lo automatiza a menos de 1 segundo.
 
 ---
 
@@ -27,20 +27,17 @@ En tesorería, los analistas consolidan diariamente movimientos de múltiples pr
 
 ```
 tesoreria/
-│
 ├── data/
-│   ├── generar_datos.py       # Genera el dataset simulado
-│   ├── movimientos.csv        # 500 movimientos operativos (2024)
-│   └── productos.csv          # Catálogo de productos financieros
-│
+│   └── generar_datos.py       # Genera el dataset simulado
 ├── sql/
-│   └── consultas_tesoreria.sql  # 6 consultas SQL documentadas
-│
+│   └── consultas_tesoreria.sql
 ├── python/
-│   └── reporte_tesoreria.py   # Script principal de automatización
-│
+│   └── reporte_tesoreria.py
+├── screenshots/
+│   ├── kpis.png
+│   ├── dashboard_principal.png
+│   └── alertas_liquidez.png
 └── README.md
-```
 
 ---
 
@@ -150,7 +147,7 @@ COPY movimientos FROM 'movimientos.csv' CSV HEADER;
 ## Dashboard Power BI
 
 El dashboard incluye:
-- **Flujo neto diario** — gráfico de línea por moneda
+- **Flujo neto mensual** — gráfico barras agrupadas por moneda
 - **Posición de liquidez acumulada** — área apilada
 - **Distribución por producto** — gráfico de barras
 - **KPIs principales** — tarjetas con total ingresos, egresos y flujo neto
@@ -158,13 +155,16 @@ El dashboard incluye:
 - **Filtros** — por moneda, producto y rango de fechas
 
 ### KPIs Principales
-![KPIs principales de tesorería mostrando cuatro métricas clave en tarjetas: Ingresos PEN de 137.51 millones, Egresos PEN de 141.86 millones, Días con Alerta de 101, y Flujo Neto PEN de -4.35 millones. Las tarjetas presentan un diseño limpio con fondo blanco, tipografía en tonos grises institucionales y valores numéricos destacados, reflejando un tono analítico profesional que comunica una situación de déficit de liquidez en la tesorería.](screenshots/kpis.png)
+![KPIs principales](screenshots/kpis.png)
+Déficit de liquidez de S/ 4.35M en PEN durante 2024, con 101 días de flujo negativo.
 
 ### Flujo, Liquidez y Productos
-![Dashboard principal de tesorería con tres gráficos: flujo neto por mes y moneda (PEN en azul claro y USD en azul oscuro) mostrando variaciones mensuales entre -10 y +20 mil, posición de liquidez acumulada con dos áreas sombreadas en azul indicando tendencia decreciente de -0.0 a -0.2 millones, y volumen de ingresos por producto en barras horizontales con Overnight liderando, seguido de Repo, Depósito a Plazo, Línea de Crédito y Cuenta Corriente. El dashboard presenta un tono analítico profesional con predominio de azules institucionales.](screenshots/dashboard_principal.png)
+![Dashboard principal](screenshots/dashboard_principal.png)
+Overnight concentra el mayor volumen de ingresos. La posición acumulada muestra deterioro sostenido desde marzo.
 
 ### Alertas de Liquidez
-![Tabla de alertas de liquidez mostrando 31 registros de flujo negativo con columnas de estado, fecha y suma de flujo neto. Los registros incluyen fechas de 2024 con montos negativos que van desde -9,776,553.65 hasta -1,294,671.30 PEN, indicando días críticos donde los egresos superaron los ingresos. La tabla presenta un tono de advertencia reflejando la situación de riesgo de liquidez en la tesorería.](screenshots/alertas_liquidez.png)
+![Alertas de liquidez](screenshots/alertas_liquidez.png)
+Top 31 días críticos ordenados por severidad. El día más crítico registró un flujo negativo de S/ 9.77M.
 
 ---
 
