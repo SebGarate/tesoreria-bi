@@ -156,14 +156,17 @@ El dashboard incluye:
 
 ### KPIs Principales
 ![KPIs principales](screenshots/KPIS.png)
+
 Déficit de liquidez de S/ 4.35M en PEN durante 2024, con 101 días de flujo negativo.
 
 ### Flujo, Liquidez y Productos
 ![Dashboard principal](screenshots/Dashboard_principal.png)
+
 Overnight concentra el mayor volumen de ingresos. La posición acumulada muestra deterioro sostenido desde marzo.
 
 ### Alertas de Liquidez
 ![Alertas de liquidez](screenshots/Alertas_liquidez.png)
+
 Top 31 días críticos ordenados por severidad. El día más crítico registró un flujo negativo de S/ 9.77M.
 
 ---
